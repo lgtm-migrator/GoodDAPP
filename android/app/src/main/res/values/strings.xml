@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">GoodDollar</string>
-    <string moduleConfig="true" name="CodePushDeploymentKey">@string/REACT_APP_CODE_PUSH_KEY</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">"$System.env.REACT_APP_CODE_PUSH_DEPLOYMENT_KEY"</string>
+    <string name="CodePushPublicKey">-----BEGIN PUBLIC KEY-----
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu2FQeFeVpxUt/MdbBK7O
+      1oW6Q07hDzCsrZl4//2eDkddu6uez70EdmgyA7HmCzjHStWQ2Sg6bTeWQIrKutPi
+      6ZRAIVda5+sjg31CDKy7dovt6DBBTzAqXCL+2RhHAu1X2R7AVskNEqHE0Af6lKUd
+      9lWvA+qhmL49kkvvLX2MWpxhLyk0D+ARgJWUywty3fqt1Hgqi8QtiPlf7SG1Dymx
+      BA/soNa4GZpYONBxIknE/iv/siLYVSjWgOnY98K6O9Flyu64Clc4tszJtj/JrQwF
+      wXX0cTq7abD+ouI3aAKnOlr1wsvX7NLpCRhC36r77cgMGHrxZHTiT9igR5qrsYf/
+      bwIDAQAB
+      -----END PUBLIC KEY-----</string>
 </resources>
