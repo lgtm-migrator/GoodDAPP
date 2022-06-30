@@ -1,9 +1,11 @@
 // @flow
 import { ActionSheetProvider } from '@expo/react-native-action-sheet'
 import React, { useEffect, useState } from 'react'
-import { Platform } from 'react-native'
+import { Alert, Platform } from 'react-native'
 import '../lib/shim'
 import '../lib/gundb/gundb'
+// eslint-disable-next-line import/default
+import CodePush from 'react-native-code-push'
 import AsyncStorage from '../lib/utils/asyncStorage'
 
 import Config from '../config/config'
@@ -35,8 +37,15 @@ const AppHolder = () => {
     const initializeApp = async () => {
       if (Platform.OS === 'web') {
         await upgradeVersion()
+      } else {
+        await CodePush.sync({ installMode: CodePush.InstallMode.IMMEDIATE }, syncWithCodePush)
       }
+
       setReady(true)
+    }
+
+    const syncWithCodePush = status => {
+      Alert.alert('Codepush sync status', JSON.stringify(status))
     }
 
     if (ready) {
