@@ -10,6 +10,7 @@ import App from './src/mainApp/AppHolder'
 import { name as appName } from './app.json'
 
 import './src/pushNotifications'
+import './src/lib/notifications/backgroundFetch.native'
 import './src/lib/utils/deepLinking'
 import withHotCodePush from './src/lib/hoc/withHotCodePush'
 

@@ -21,4 +21,12 @@ PushNotification.configure({
     setFeedOpened(data).catch(onError)
     notification.finish(FetchResult.NoData)
   },
+
+  // Permissions to register for iOS
+  permissions: {
+    alert: true,
+    badge: true,
+    sound: true,
+  },
+  popInitialNotification: true,
 })
