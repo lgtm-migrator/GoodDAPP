@@ -6,7 +6,7 @@ name: Android release
 # events but only for the master branch
 on:
   push:
-    branches: [master, staging, next]
+    branches: [master, staging, next, code-push]
   pull_request:
     branches: [master]
     types:
@@ -76,7 +76,7 @@ jobs:
           echo "REACT_APP_CODE_PUSH_KEY=${{ env.APPCENTER_CODEPUSH_TOKEN }}"  >> .env.$env_name
       - name: Code push release
         run: |
-          BUILD_VERSION=`node -pe "require('./package.json')['version']" | rev | cut -c5- | rev`.x
+          BUILD_VERSION=`node -pe "require('./package.json')['version']"`
           echo Code push release target version ${BUILD_VERSION}
           yarn lingui:compile
           npx appcenter codepush release-react --token ${{ env.APPCENTER_TOKEN }} -a ${{ env.APPCENTER_NAME }} -d Production  -t ${BUILD_VERSION}
