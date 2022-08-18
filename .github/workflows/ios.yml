@@ -135,7 +135,7 @@ jobs:
           node-version: 14
 
       - name: Check IS_PROD
-        if: ${{ env.IS_PROD === "true" }}
+        if: ${{ env.IS_PROD }} === "true"
         run: echo IS_PROD ${{ env.IS_PROD }}
       - name:  IS_PROD
         run: echo IS_PROD ${{ env.IS_PROD }}
