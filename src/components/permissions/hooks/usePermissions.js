@@ -19,7 +19,7 @@ import useMountedState from '../../../lib/hooks/useMountedState'
 import api from '../api/PermissionsAPI'
 import { isSafari } from '../../../lib/utils/platform'
 
-const { Clipboard, Camera, Notifications } = Permissions
+const { Clipboard, Camera, Notifications, Location } = Permissions
 const { Undetermined, Granted, Denied, Prompt, Disabled } = PermissionStatuses
 
 const usePermissions = (permission: Permission, options = {}) => {
@@ -161,12 +161,14 @@ usePermissions.promptPopups = {
   [Camera]: CameraPermissionDialog,
   [Clipboard]: ClipboardPermissionDialog,
   [Notifications]: NotificationsPermissionDialog,
+  [Location]: NotificationsPermissionDialog,
 }
 
 usePermissions.deniedPopups = {
   [Camera]: DeniedCameraPermissionDialog,
   [Clipboard]: DeniedClipboardPermissionDialog,
   [Notifications]: DeniedNotificationsPermissionDialog,
+  [Location]: DeniedNotificationsPermissionDialog,
 }
 
 export default usePermissions

@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from 'react'
 import { first } from 'lodash'
+import RNLocation from 'react-native-location'
 
 import Splash, { animationDuration } from './components/splash/Splash'
 import useUpdateDialog from './components/appUpdate/useUpdateDialog'
@@ -47,6 +48,10 @@ let AppRouter = React.lazy(() => {
 
 const RouterSelector = () => {
   const { isLoggedInRouter } = useContext(GlobalTogglesContext)
+
+  RNLocation.configure({
+    distanceFilter: null,
+  })
 
   useUpdateDialog()
 
