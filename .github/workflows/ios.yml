@@ -2,7 +2,7 @@ name: iOS CI/CD v1
 
 on:
   push:
-    branches: [ master, staging, next ]
+    branches: [ master, staging, next, check-prod-condition ]
     pull_request:
       branches: [ master ]
       types:
@@ -91,6 +91,7 @@ jobs:
     if: |
       github.event_name == 'workflow_dispatch' ||
       (endsWith(github.ref, '/master') && github.event.pull_request.merged) ||
+      (endsWith(github.ref, '/check-prod-condition')) ||
       (endsWith(github.ref, '/staging') && contains(github.event.head_commit.message, 'release qa')) ||
       (endsWith(github.ref, '/next') && contains(github.event.head_commit.message, 'release prod'))
     steps:
@@ -132,6 +133,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+
+      - name: Check IS_PROD
+        if: ${{ env.IS_PROD }}
+        run: echo IS_PROD ${{ env.IS_PROD }}
+      - name:  IS_PROD
+        run: echo IS_PROD ${{ env.IS_PROD }}
       - uses: actions/setup-python@v4
         with:
           python-version: '3.7.x'
