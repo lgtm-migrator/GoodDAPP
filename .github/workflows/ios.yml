@@ -125,7 +125,7 @@ jobs:
           echo "APPCENTER_TOKEN=${{ secrets.APPCENTER_IOS_PROD }}" >> $GITHUB_ENV
           echo "IS_PROD=true" >> $GITHUB_ENV
       # setup actions
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ env.TARGET_BRANCH }}
       - name: Echo TARGET_BRANCH
@@ -133,15 +133,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-
-      - name: Check IS_PROD
-        if: ${{ env.IS_PROD == 'true' }}
-        run: echo IS_PROD ${{ env.IS_PROD }}
-      - name:  IS_PROD
-        run: echo IS_PROD ${{ env.IS_PROD }}
       - uses: actions/setup-python@v4
         with:
           python-version: '3.7.x'
+      - name: Cache & install npm dependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          install-command: yarn --immutable
       - name: fix max_user_watches
         run: |
           sudo sysctl -w kern.maxfiles=524288
@@ -154,10 +152,6 @@ jobs:
       - name: Setup CocoaPods
         run: sudo gem install cocoapods
       # install app deps
-      - name: Cache & install npm dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          install-command: yarn --immutable
       - name: Restore Pods cache
         uses: actions/cache@v2
         with:
