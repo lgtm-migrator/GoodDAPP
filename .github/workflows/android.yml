@@ -143,8 +143,7 @@ jobs:
       - name: Cache & install npm dependencies
         uses: bahmutov/npm-install@v1
         with:
-          useLockFile: false
-          useRollingCache: true
+          install-command: yarn --immutable
       - name: add .env secrets
         env:
           SENTRYRC: ${{ secrets.sentryrc_file }}
