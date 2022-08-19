@@ -246,3 +246,4 @@ jobs:
         if: ${{ env.ENV == 'prod' }}
         run: |
           npx appcenter distribute stores publish --token ${{ secrets.APPCENTER_IOS_PROD }} --app "${{ env.APPCENTER_NAME }}" --store App\ Store\ Connect\ Users --file "ios/build/GoodDollar.ipa" --release-notes "$(git log -1 --pretty=format:'%h %s')"
+
