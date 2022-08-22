@@ -150,14 +150,14 @@ jobs:
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
         shell: bash
         working-directory: tooling
-    - name: Restore yarn cache
-      uses: actions/cache@v3
-      id: restore-yarn-cache
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: yarn-cache-folder-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          yarn-cache-folder-
+      - name: Restore yarn cache
+        uses: actions/cache@v3
+        id: restore-yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: yarn-cache-folder-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            yarn-cache-folder-
       - name: Cache node_modules
         id: cache-node-modules
         uses: actions/cache@v2
