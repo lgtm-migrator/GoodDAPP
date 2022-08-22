@@ -148,8 +148,6 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-        shell: bash
-        working-directory: tooling
       - name: Restore yarn cache
         uses: actions/cache@v3
         id: restore-yarn-cache
